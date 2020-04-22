@@ -1,0 +1,35 @@
+<!-- <div
+  (swipeleft)="oldVideo()"
+  (swiperight)="nextVideo()"
+  (swipeup)="oldUser()"
+  (swipedown)="nextUser()">
+  <video
+    width="100%" height="100%"
+    *ngFor="let video of users[idxCurrentUser].videos"
+    [ngClass]="{'notVisible': video.name !== users[idxCurrentUser].videos[idxCurrentVideo].name}"
+    class="video-fluid"
+    autoplay loop muted>
+    <source [src]="video.url" type="video/mp4" />
+  </video>
+</div> -->
+
+<mdb-carousel
+  (swipeup)="oldUser()"
+  (swipedown)="nextUser()"
+  (swipeleft)="oldVideo()"
+  (swiperight)="nextVideo()"
+  class="carousel slide " [animation]="'slide'">
+  <mdb-carousel-item *ngFor="let video of users[idxCurrentUser].videos">
+    <div class="view">
+      <video class="video-fluid" autoplay loop muted>
+        <source [src]="video.url" type="video/mp4" />
+      </video>
+    </div>
+    <div class="carousel-caption">
+      <div class="animated fadeInDown delay-1s">
+        <h3 class="h3-responsive">{{users[idxCurrentUser].name}}</h3>
+        <p>{{users[idxCurrentUser].videos[idxCurrentVideo].name}}</p>
+      </div>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
